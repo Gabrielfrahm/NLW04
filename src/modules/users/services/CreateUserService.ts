@@ -22,7 +22,7 @@ class CreateUserService {
     const checkUser = await this.userRepository.findByEmail(email);
 
     if (checkUser) {
-      throw new AppError('user already existis');
+      throw new AppError('user already existis', 400);
     }
 
     const user = await this.userRepository.create({

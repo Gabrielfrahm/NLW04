@@ -1,9 +1,9 @@
 {
     "name":"default",
     "type": "sqlite",
-    "database": "src/database/database.sqlite",
+    "database": "src/shared/infra/typeorm/database/database.sqlite",
     "logging" : true,
-    "migrations": ["./src/shared/infra/typeorm/database/migrations/**.ts"],
+    "migrations": ["./src/shared/infra/typeorm/database/migrations/*.ts"],
     "entities": [
       "./src/modules/**/infra/typeorm/entities/*.ts"
     ],
