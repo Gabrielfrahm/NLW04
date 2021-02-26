@@ -1,11 +1,18 @@
 import request from 'supertest';
 import app from '@shared/infra/http/app';
 import createConnection from '@shared/infra/typeorm/database';
+import { getConnection } from 'typeorm';
 
 describe('Surveys', () => {
   beforeAll(async () => {
     const connection = await createConnection();
     await connection.runMigrations();
+  });
+
+  afterAll(async () => {
+    const connection = getConnection();
+    await connection.dropDatabase();
+    await connection.close();
   });
 
   it('Should be able to create a new survey', async () => {

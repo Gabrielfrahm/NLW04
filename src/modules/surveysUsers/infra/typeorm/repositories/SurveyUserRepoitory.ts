@@ -1,6 +1,6 @@
 import ICreateSurveyUserDTO from '@modules/surveysUsers/dtos/ICreateSurveyUserDTO';
 import ISurveyUserRepository from '@modules/surveysUsers/repositories/ISurveyUserRepository';
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, IsNull, Not, Repository } from 'typeorm';
 import SurveyUser from '../entities/SurveyUser';
 
 class SurveyUserRepository implements ISurveyUserRepository {
@@ -32,8 +32,22 @@ class SurveyUserRepository implements ISurveyUserRepository {
     return surveyUser;
   }
 
-  public async findAll(): Promise<SurveyUser[] | undefined> {
-    const surveyUser = await this.ormRepository.find();
+  public async findByUserId(user_id: string): Promise<SurveyUser | undefined> {
+    const surveyUser = await this.ormRepository.findOne({
+      where: {
+        user_id,
+      },
+      relations: ['user'],
+    });
+
+    return surveyUser;
+  }
+
+  public async findAll(survey_id: string): Promise<SurveyUser[] | undefined> {
+    const surveyUser = await this.ormRepository.find({
+      survey_id,
+      value: Not(IsNull()),
+    });
 
     return surveyUser;
   }

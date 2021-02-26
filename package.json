@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --inspect --ignore-watch node_modules src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "cross-env NODE_ENV=test jest",
-    "posttest": "rm src/shared/infra/typeorm/database/database.test.sqlite"
+    "test": "cross-env NODE_ENV=test jest -i"
   },
   "dependencies": {
+    "celebrate": "^13.0.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

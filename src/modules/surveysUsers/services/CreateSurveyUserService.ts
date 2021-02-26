@@ -58,10 +58,11 @@ class CreateSurveyService {
       title: survey.title,
       description: survey.description,
       link: process.env.URL_MAIL,
-      user_id: user.id,
+      id: '',
     };
 
     if (surveyUserAlreadyExistis) {
+      variables.id = surveyUserAlreadyExistis.user_id;
       await SendMailProvider.execute({
         to: email,
         subject: survey.title,
@@ -76,6 +77,8 @@ class CreateSurveyService {
       survey_id: survey.id,
       user_id: user.id,
     });
+
+    variables.id = user.id;
 
     await SendMailProvider.execute({
       to: email,
