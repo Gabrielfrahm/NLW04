@@ -11,6 +11,7 @@ module.exports = {
 
   // Stop running tests after `n` failures
   bail: true,
+  verbose: true,
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\Gabri\\AppData\\Local\\Temp\\jest",
@@ -19,10 +20,10 @@ module.exports = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverageFrom: ['<rootDir>/src/modules/**/services/*.ts'],
+  collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: undefined,
+  collectCoverageFrom: ['<rootDir>/src/modules/**/controller/*.ts'],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
@@ -36,7 +37,10 @@ module.exports = {
   coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
-  coverageReporters: ['text-summary', 'lcov'],
+  coverageReporters: [
+    "text-summary",
+    "lcov",
+  ],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
